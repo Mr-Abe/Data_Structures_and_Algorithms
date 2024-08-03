@@ -13,3 +13,16 @@ class Stack:
     def push (self, item):
         self.stack[self.size] = item
         self.size += 1
+
+    def pop(self):
+        if self.size == 0:
+            return 'Stack is empty'
+        else:
+            last_item = self.stack[self.size]
+
+            self.size -= 1
+
+            return last_item
+        
+    def peek(self):
+        last_item = self.stack[self.size]

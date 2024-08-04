@@ -34,12 +34,24 @@ class DynamicArray:
         # check the space in array
         if self.capacity == self.size:
             self.resize()
-        self.array.append(value)
+        # add item to end of array
+        self.array[self.size] = value
+
+        # update size of array
         self.size += 1
     
     def popback(self):
-        # remove item from end of array
-        self.array.pop()
+        # check if array is empy
+        if self.size == 0:
+            raise IndexError('Trying to remove from empty array.')
+        else:
+            # remove item from end of array
+            value = self.array[self.size-1]
+
+            # update array size
+            self.size -= 1
+
+            return value
     
     def resize(self):
         # create a new capacity 
@@ -49,15 +61,17 @@ class DynamicArray:
         temp_array = [None] * new_capacity
 
         # copy items from one to the other
-        for item in self.array:
-            temp_array[item] = item
+        for i in range (self.size):
+            temp_array[i] = self.array[i]
 
         # update the new capacity
+        self.capacity = new_capacity
 
         # update the new array
+        self.array = temp_array
     
     def getSize(self):
-        pass
+        return self.size
     
     def getCapacity(self):
-        pass
+        return self.capacity

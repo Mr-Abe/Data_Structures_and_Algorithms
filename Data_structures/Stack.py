@@ -8,21 +8,24 @@ class Stack:
     '''Class will have 5 unique methods: push, pop, peek, is_empty, and size.'''
     def __init__(self):
         self.stack = []
-        self.size = 0
 
     def push (self, item):
-        self.stack[self.size] = item
-        self.size += 1
+        self.stack.append(item)
 
     def pop(self):
-        if self.size == 0:
+        if self.is_empty():
             return 'Stack is empty'
         else:
-            last_item = self.stack[self.size]
-
-            self.size -= 1
-
-            return last_item
+            return self.stack.pop()
         
     def peek(self):
-        last_item = self.stack[self.size]
+        if self.is_empty():
+            return 'Stack is empty'
+        else:
+            return self.stack[-1]
+        
+    def is_empty(self):
+        return len(self.stack) == 0
+    
+    def size(self):
+        return len(self.stack)
